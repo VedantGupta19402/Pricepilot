@@ -41,3 +41,10 @@ data/processed/*
 .coverage.*
 coverage.xml
 htmlcov/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+tmp/
+temp/
