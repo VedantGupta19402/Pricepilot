@@ -18,3 +18,7 @@ build/
 dist/
 *.egg-info/
 .eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+profile_default/
