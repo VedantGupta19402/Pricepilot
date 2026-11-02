@@ -12,3 +12,7 @@ from pathlib import Path
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_MODEL_PATH = PROJECT_ROOT / "models" / "pricepilot_linear_regression.joblib"
+
+
