@@ -29,3 +29,9 @@ models/*
 *.joblib
 *.pkl
 *.pickle
+
+# Datasets (keep directory placeholders)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
