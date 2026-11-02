@@ -41,3 +41,42 @@ def load_dataset(path: Path | str = DEFAULT_DATASET_PATH) -> pd.DataFrame:
     return dataset
 
 
+def validate_dataset(
+    dataset: pd.DataFrame,
+    required_columns: Iterable[str] | None = None,
+    target_column: str = TARGET_COLUMN,
+) -> pd.DataFrame:
+    """Validate the structure and basic quality of a house price dataset.
+
+    The dataset must contain rows, include the target column and any
+    required feature columns, and have a numeric target without missing
+    values.
+
+    Args:
+        dataset: Dataset to validate.
+        required_columns: Additional columns expected in the dataset.
+        target_column: Name of the house price target column.
+
+    Returns:
+        A validated copy of the dataset.
+
+    Raises:
+        ValueError: If any validation check fails.
+    """
+    if dataset.empty:
+        raise ValueError("Dataset contains no rows.")
+
+    expected_columns = {target_column, *(required_columns or ())}
+    missing_columns = sorted(expected_columns - set(dataset.columns))
+    if missing_columns:
+        raise ValueError(
+            "Dataset is missing required columns: " + ", ".join(missing_columns)
+        )
+
+    target = dataset[target_column]
+    if not pd.api.types.is_numeric_dtype(target):
+        raise ValueError(f"Target column '{target_column}' must be numeric.")
+    if target.isna().any():
+        raise ValueError(f"Target column '{target_column}' contains missing values.")
+
+    return dataset.copy()
