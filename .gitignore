@@ -48,3 +48,12 @@ htmlcov/
 *.log
 tmp/
 temp/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+credentials.json
+secrets.json
